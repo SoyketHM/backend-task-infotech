@@ -30,6 +30,6 @@ const cronTrigger = (cronTime, onTick, timezone) => {
 ```
 
 # How to run
-npm install </br>
-npm start
-#### serve run with localhost:5000
+1. `npm install`
+2. `npm start` </br>
+serve run with [localhost:5000](http://localhost:5000)
