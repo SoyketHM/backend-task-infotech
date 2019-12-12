@@ -1,10 +1,9 @@
 const express   = require('express');
 const fs        = require('fs');
 const cron      = require('cron').CronJob;
-const moment      = require('moment');
+const moment    = require('moment');
 const app       = express();
 
-// Load Middlewares
 app.use(express.json());
 
 // Read timezones.json
@@ -18,6 +17,7 @@ const readFile = () => {
         })
     })
 };
+
 //========Static========
 // // Trigger cron job
 // const cronTrigger = (timezone) => {
@@ -39,12 +39,14 @@ const readFile = () => {
 
 //========Dynamic========
 
+// Trigger cron job
 const cronTrigger = (cronTime, onTick, timezone) => {
     new cron(cronTime, ()=> {onTick(timezone)}, undefined, true, timezone);
 };
 
+// Send email all users
 const sendEmail = async ()=>{
-    const cronTime = "00 52 20 12 11 *";
+    const cronTime = "00 52 20 12 11 *"; // sec, min, hour, day, month
     const onTick = function(timezone) {
         console.log(`Test Email ${timezone} ${moment().format('LLL')}`);
     };
