@@ -22,11 +22,10 @@ const readFile = () => {
 ```
 
 Then on sendEmail method I read all the timezone and creating cron for each time zone using cronTrigger method.
+cronTrigger method is dynamic method. Parameters of cronTrigger method (cronTime, onTick, timezone) provide from sendEmail method.
 ```node
-const cronTrigger = (timezone) => {
-  new cron("00 46 17 12 11 *", function() {
-    console.log("Test Email " + timezone + " " + moment().format('LLL'));
-  }, undefined, true, timezone);
+const cronTrigger = (cronTime, onTick, timezone) => {
+    new cron(cronTime, ()=> {onTick(timezone)}, undefined, true, timezone);
 };
 ```
 
